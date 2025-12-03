@@ -8,10 +8,10 @@ To run the solution run the whole project `cargo run x y suffix` setting `x` as 
 
 Data for each task can be accessed through the site. It should be placed in the data folder with name `dayx.txt`, where `x` thr day number. Additional test data should have the same name, but with an additional suffix, for example `dayxtest.txt`. Some smaller test cases are placed alongside the solutions under `#[test]`.
 
-2/?⭐
+4/?⭐
 |            | 月 | 火 | 水 | 木 | 金 | 土 | 日 |
 |:-----------|-------|-------|-------|-------|-------|-------|-------|
-| **Week 1** |⭐&nbsp;⭐|||||||
+| **Week 1** |⭐&nbsp;⭐|⭐&nbsp;⭐||||||
 | **Week 2** ||||||||
 
 <!--
