@@ -6,7 +6,6 @@ for /l %%i in (1, 1, 12) do (
     set DayNumber=%%i
 
     if not exist data\day!DayNumber!.txt type NUL > data\day!DayNumber!.txt
-    if not exist data\day!DayNumber!test.txt type NUL > data\day!DayNumber!test.txt
 
     if not exist src\day!DayNumber!part1.rs >> .gitignore echo.
     if not exist src\day!DayNumber!part1.rs >> .gitignore <nul set /p "=day!DayNumber!*"
