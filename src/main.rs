@@ -43,7 +43,7 @@ fn main() {
     if !(1..=12).contains(&day) || !(1..=2).contains(&part) {
         panic!("Wrong day/part!");
     }
-    let suffix: String = args.next().map_or(String::new(), |arg| format!("{}", arg));
+    let suffix: String = args.next().map_or(String::new(), |arg| arg);
     
     let input_file: String = format!("data/day{}{}.txt", day, suffix);
     let input: String = std::fs::read_to_string(input_file).unwrap();
