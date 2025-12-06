@@ -6,7 +6,8 @@ pub fn solution(input: &str) -> String {
  
 // #[test] 
 // fn basic_test() { 
-//     let input:String = ""
-//                          .chars().filter(|&c| c!=' ').collect::<String>();
+//     let input:String = 
+// ""
+// .chars().collect::<String>();
 //     assert_eq!(solution(&input), "".to_string()) 
 // } 
