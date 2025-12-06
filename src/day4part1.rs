@@ -13,7 +13,7 @@ fn can_be_accessed(grid: &Grid<char>, pos: (i32, i32)) -> bool{
 }
 
 
-pub fn solution(input: String) -> String {
+pub fn solution(input: &str) -> String {
     let grid:Grid<char> = Grid::new(input.lines()
                                              .map(|line|line.chars().collect::<Vec<char>>())
                                              .collect::<Vec<Vec<char>>>());
@@ -36,5 +36,5 @@ fn basic_test() {
                         .@@@@@@@@.
                         @.@.@@@.@."
                         .chars().filter(|&c| c!=' ').collect::<String>();
-    assert_eq!(solution(input), "13".to_string())
+    assert_eq!(solution(&input), "13".to_string())
 }

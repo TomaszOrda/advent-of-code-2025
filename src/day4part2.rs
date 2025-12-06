@@ -20,14 +20,13 @@ fn try_remove_roll_off_paper(grid: &mut Grid<char>, pos: (i32, i32)) -> Option::
     Some(())
 }
 
-pub fn solution(input: String) -> String {
+pub fn solution(input: &str) -> String {
     let mut grid:Grid<char> = Grid::new(input.lines()
                                              .map(|line|line.chars().collect::<Vec<char>>())
                                              .collect::<Vec<Vec<char>>>());
     let grid_ids = grid.iter_flat().collect::<Vec<(i32,i32)>>();
     while grid_ids.iter()
-                  .map(|&pos| try_remove_roll_off_paper(&mut grid, pos))
-                  .filter(|res| res.is_some())
+                  .filter_map(|&pos| try_remove_roll_off_paper(&mut grid, pos))
                   .count() > 0 {};
             
     format!("{:?}", grid.iter_flat()
@@ -48,5 +47,5 @@ fn basic_test() {
                         .@@@@@@@@.
                         @.@.@@@.@."
                         .chars().filter(|&c| c!=' ').collect::<String>();
-    assert_eq!(solution(input), "43".to_string())
+    assert_eq!(solution(&input), "43".to_string())
 }

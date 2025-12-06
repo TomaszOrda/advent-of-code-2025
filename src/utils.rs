@@ -29,7 +29,7 @@ impl<T> Grid<T> {
         }
     }
     pub fn iter_flat(&self)-> impl Iterator<Item = (i32,i32)>{
-        return (0..self.height).flat_map(|y| 
-                                         (0..self.width).map(move |x, | (x,y)))
+        (0..self.height).flat_map(|y| 
+                                  (0..self.width).map(move |x, | (x,y)))
     }
 }

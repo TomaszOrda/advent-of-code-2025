@@ -13,7 +13,7 @@ mod day10part1; mod day10part2;
 mod day11part1; mod day11part2;
 mod day12part1; mod day12part2;
 fn main() {
-    type SolutionPointer = fn(String) -> String;
+    type SolutionPointer = fn(&str) -> String;
     let solutions: [[SolutionPointer; 2]; 12] = [
         [day1part1::solution, day1part2::solution], 
         [day2part1::solution, day2part2::solution], 
@@ -40,13 +40,11 @@ fn main() {
         .expect("No part provided")
         .parse()
         .expect("Invalid part");
-    if !(1..=12).contains(&day) || !(1..=2).contains(&part) {
-        panic!("Wrong day/part!");
-    }
+    assert!(!(!(1..=12).contains(&day) || !(1..=2).contains(&part)), "Wrong day/part!");
     let suffix: String = args.next().map_or(String::new(), |arg| arg);
     
-    let input_file: String = format!("data/day{}{}.txt", day, suffix);
+    let input_file: String = format!("data/day{day}{suffix}.txt");
     let input: String = std::fs::read_to_string(input_file).unwrap();
 
-    println!("{}", solutions[day - 1][part - 1](input));
+    println!("{}", solutions[day - 1][part - 1](&input));
 }
