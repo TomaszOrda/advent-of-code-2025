@@ -21,9 +21,9 @@ fn get_edges(positions: &[(i64, i64, i64)]) -> Vec<(JunctionBox, JunctionBox, i6
 }
 
 fn get_edges_sorted(edges: &[(JunctionBox, JunctionBox, i64)], n:usize) -> Vec<(JunctionBox, JunctionBox, i64)>{
-    let mut edges:Vec<(JunctionBox, JunctionBox, i64)> = edges.iter().map(|edge| *edge).collect();
+    let mut edges:Vec<(JunctionBox, JunctionBox, i64)> = edges.to_vec();
     edges.sort_by(|e1, e2| if e1.2 < e2.2 || e1.2==e2.2 && e1.0 < e2.0 {std::cmp::Ordering::Less} else {std::cmp::Ordering::Greater});
-    edges.iter().take(n).map(|x|*x).collect()
+    edges.iter().take(n).copied().collect()
 }
 
 fn get_circuit_sizes(edges: &[(JunctionBox, JunctionBox, i64)]) -> Vec<i64>{
