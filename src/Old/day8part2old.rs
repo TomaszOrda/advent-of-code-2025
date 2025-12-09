@@ -1,4 +1,4 @@
-use std::collections::HashMap;
+use std::collections::{HashMap, HashSet};
 
 
 type JunctionBox = usize;
@@ -26,26 +26,27 @@ fn get_edges_sorted(edges: &[(JunctionBox, JunctionBox, i64)]) -> Vec<(JunctionB
     edges
 }
 
-fn get_last_edge_after_full_connection(edges: &[(JunctionBox, JunctionBox, i64)], connections: &HashMap<JunctionBox, JunctionBox>) -> (JunctionBox, JunctionBox, i64){
-    let mut connections = connections.clone();
-    let mut number_of_connecting_edges = 0;
-    for edge in edges.iter(){
-        let indicator_0 = connections[&edge.0];
-        let indicator_1 = connections[&edge.1];
-        if indicator_0 != indicator_1{
-            number_of_connecting_edges += 1;
-            for (_, value) in connections.iter_mut(){
-                if value == &indicator_1{
-                    *value = indicator_0;
-                }
-            }
-            if number_of_connecting_edges == connections.len() - 1{
+fn get_last_edge_after_full_connection(edges: &[(JunctionBox, JunctionBox, i64)], connections: &HashMap<JunctionBox, HashSet<JunctionBox>>, connecting_edges: u32) -> (JunctionBox, JunctionBox, i64){
+    
+    for (id, edge) in edges.iter().enumerate(){
+        if !connections[&edge.0].contains(&edge.1){
+            if connecting_edges == connections.len() as u32 - 2{
                 return *edge
+            }else{
+                let mut new_connections = connections.clone();
+                for connection in connections[&edge.0].iter(){
+                    new_connections.get_mut(&connection).unwrap().extend(connections[&edge.1].iter());
+                } 
+                for connection in connections[&edge.1].iter(){
+                    new_connections.get_mut(&connection).unwrap().extend(connections[&edge.0].iter());
+                } 
+                return get_last_edge_after_full_connection(&edges[id+1..], &new_connections, connecting_edges + 1)
             }
         }
     }
     panic!("Not enough edges!")
 }
+
 
 pub fn solution(input: &str) -> String {
     let junctions_number = input.lines().count();
@@ -55,8 +56,8 @@ pub fn solution(input: &str) -> String {
                      .map(|coords_iter| (coords_iter[0], coords_iter[1], coords_iter[2]))
                      .collect::<Vec<(i64, i64, i64)>>();
     let edges_sorted = get_edges_sorted(&get_edges(&junction_positions));
-    let initial_connections = (0..junctions_number).map(|j| (j, j)).collect::<HashMap<JunctionBox, JunctionBox>>();
-    let last_edge = get_last_edge_after_full_connection(&edges_sorted, &initial_connections);
+    let initial_connections = (0..junctions_number).map(|j| (j, HashSet::from([j]))).collect::<HashMap<JunctionBox, HashSet<JunctionBox>>>();
+    let last_edge = get_last_edge_after_full_connection(&edges_sorted, &initial_connections, 0);
     format!("{:?}", junction_positions[last_edge.0].0 * junction_positions[last_edge.1].0)
 } 
  
