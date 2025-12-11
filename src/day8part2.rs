@@ -34,7 +34,7 @@ fn get_last_edge_after_full_connection(edges: &[(JunctionBox, JunctionBox, i64)]
         let indicator_1 = connections[&edge.1];
         if indicator_0 != indicator_1{
             number_of_connecting_edges += 1;
-            for (_, value) in &mut connections{
+            for value in &mut connections.values_mut(){
                 if value == &indicator_1{
                     *value = indicator_0;
                 }
