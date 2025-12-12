@@ -8,11 +8,11 @@ To run the solution, run the whole project `cargo run x y` setting `x` as day an
 
 Data for each task can be accessed through the site. It should be placed in the data folder with name `dayx.txt`, where `x` is the day number. Additional test data should have the same name, but with an additional suffix, for example `dayxtest.txt`.
 
-20/?⭐
+22/24⭐
 |            | 月 | 火 | 水 | 木 | 金 | 土 | 日 |
 |:-----------|-------|-------|-------|-------|-------|-------|-------|
 | **Week 1** |⭐&nbsp;⭐|⭐&nbsp;⭐|⭐&nbsp;⭐|⭐&nbsp;⭐|⭐&nbsp;⭐|⭐&nbsp;⭐|⭐&nbsp;⭐|
-| **Week 2** |⭐&nbsp;⭐|⭐&nbsp;⭐|⭐&nbsp;⭐|||||
+| **Week 2** |⭐&nbsp;⭐|⭐&nbsp;⭐|⭐&nbsp;⭐|⭐&nbsp;⭐||||
 
 <!--
 Last years results for development reference.
