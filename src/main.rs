@@ -11,7 +11,7 @@ mod day8part1; mod day8part2;
 mod day9part1; mod day9part2;
 mod day10part1; mod day10part2;
 mod day11part1; mod day11part2;
-mod day12part1; mod day12part2;
+mod day12part1;
 fn main() {
     type SolutionPointer = fn(&str) -> String;
     let solutions: [[SolutionPointer; 2]; 12] = [
@@ -26,7 +26,7 @@ fn main() {
         [day9part1::solution, day9part2::solution], 
         [day10part1::solution, day10part2::solution], 
         [day11part1::solution, day11part2::solution], 
-        [day12part1::solution, day12part2::solution]
+        [day12part1::solution, |x|x.to_string()]
     ];
 
     let args = &mut std::env::args().skip(1);
@@ -40,7 +40,9 @@ fn main() {
         .expect("No part provided")
         .parse()
         .expect("Invalid part");
-    assert!(!(!(1..=12).contains(&day) || !(1..=2).contains(&part)), "Wrong day/part!");
+    assert!(!(day == 12 && part == 2) 
+            && !(!(1..=12).contains(&day) || !(1..=2).contains(&part)), 
+            "Wrong day/part!");
     let suffix: String = args.next().map_or(String::new(), |arg| arg);
     
     let input_file: String = format!("data/day{day}{suffix}.txt");

@@ -15,3 +15,4 @@ for /l %%i in (1, 1, 12) do (
     
     
 )
+del src\day12part2.rs
