@@ -40,8 +40,7 @@ fn main() {
         .expect("No part provided")
         .parse()
         .expect("Invalid part");
-    assert!(!(day == 12 && part == 2) 
-            && !(!(1..=12).contains(&day) || !(1..=2).contains(&part)), 
+    assert!((part != 2 || day != 12) && (1..=2).contains(&part) && (1..=12).contains(&day),
             "Wrong day/part!");
     let suffix: String = args.next().map_or(String::new(), |arg| arg);
     
