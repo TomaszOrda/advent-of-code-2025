@@ -8,7 +8,7 @@ To run the solution, run the whole project `cargo run x y` setting `x` as day an
 
 Data for each task can be accessed through the site. It should be placed in the data folder with name `dayx.txt`, where `x` is the day number. Additional test data should have the same name, but with an additional suffix, for example `dayxtest.txt`.
 
-All solutions but one top out at about a second on my machine in debug mode, and tenth of that in relase mode. Day 10 part 2 needs about 40s in release mode. My previous approach (18 times slower) was completely different from canonical, so I allowed myself to use a hint to what a canonical solution would be (after solving the puzzle the hard way).
+All solutions but one top out at about a second on my machine in debug mode, and tenth of that in relase mode. Day 10 part 2 needs about 40s in release mode. My previous approach (18 times slower) was completely different from canonical, so I allowed myself to use a hint to what a canonical solution would be (after solving the puzzle the hard way). The refactoring took about as much time as my original approach.
 
 24/24⭐
 |            | 月 | 火 | 水 | 木 | 金 | 土 | 日 |
